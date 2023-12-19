@@ -1,5 +1,6 @@
 package com.example.LeaveRestApi.config;
 
+import com.example.LeaveRestApi.repository.CakeOrderRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -29,5 +30,7 @@ public class config {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+
 
 }
