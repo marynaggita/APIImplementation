@@ -15,6 +15,7 @@ public interface CakeOrderRepository extends JpaRepository<CakeOrderRequest, Lon
     // Find orders by email
     List<CakeOrderRequest> findByEmail(String email);
 
+
     // Find orders by name and email
     List<CakeOrderRequest> findByNameAndEmail(String name, String email);
 
