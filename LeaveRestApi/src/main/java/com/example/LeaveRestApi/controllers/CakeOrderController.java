@@ -45,4 +45,18 @@ public class CakeOrderController {
         }
     }
 
+    @GetMapping("/getOrder")
+    public ResponseEntity<CakeOrderRequest>  getOrderById (@RequestParam Long id){
+        Optional<CakeOrderRequest> getOptionalOrder = cakeOrderService.getOrderById(id);
+        return getOptionalOrder.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+    @PutMapping("/updateOrder")
+    public ResponseEntity<CakeOrderRequest> updateOrder(@RequestBody CakeOrderRequest updatedOrder) {
+        CakeOrderRequest result = cakeOrderService.updateOrder(updatedOrder);
+        if (result != null) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -44,4 +44,24 @@ public class CakeOrderService {
     }
 
 
+    public CakeOrderRequest updateOrder(CakeOrderRequest updatedOrder) {
+        Optional<CakeOrderRequest> existingOrderOptional = cakeOrderRepository.findById(updatedOrder.getId());
+
+        if(existingOrderOptional.isPresent()){
+            CakeOrderRequest existingOrder = existingOrderOptional.get();
+
+            existingOrder.setName(updatedOrder.getName());
+            existingOrder.setEmail(updatedOrder.getEmail());
+
+            System.out.println("SuccessFully Updated");
+            return cakeOrderRepository.save(existingOrder);
+        } else {
+            return null;
+        }
+
+    }
+
+    public Optional<CakeOrderRequest> getOrderById (Long id){
+        return  cakeOrderRepository.findById(id);
+    }
 }
