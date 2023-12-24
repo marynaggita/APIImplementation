@@ -2,9 +2,12 @@ package com.example.LeaveRestApi.services;
 
 import com.example.LeaveRestApi.models.CakeOrderRequest;
 import com.example.LeaveRestApi.repository.CakeOrderRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -19,11 +22,9 @@ public class CakeOrderService {
     public String submitOrderRequest(CakeOrderRequest orderRequest) {
         String name = orderRequest.getName();
         String email = orderRequest.getEmail();
-        System.out.println("Received Leave Request:");
+        System.out.println("Received Cake Order Request:");
         System.out.println("Name: " + name);
         System.out.println("Email: " + email);
-
-        //CakeOrderRequest cakeOrderRequest = new CakeOrderRequest();
 
         orderRequest.setName(name);
         orderRequest.setEmail(email);
@@ -35,4 +36,12 @@ public class CakeOrderService {
 
 
     }
+    public void deleteOrderById(Long orderId) {
+        cakeOrderRepository.deleteById(orderId);
+    }
+    public List<CakeOrderRequest> getOrderByName(String name) {
+        return cakeOrderRepository.findByName(name);
+    }
+
+
 }

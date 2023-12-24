@@ -24,7 +24,7 @@ public class LeaveController {
         this.deleteLeaveService = deleteLeaveService;
         this.returnLeaveRequestsService = returnLeaveRequestsService;
     }
-    @GetMapping("/leaveRequest")
+    @GetMapping("/cakeOrdersByName")
     public LeaveRequest getLeaveRequest(@RequestParam String name){
         Optional<LeaveRequest> leaveRequest = searchLeaveService.getLeaveRequest(name);
         return (LeaveRequest) leaveRequest.orElse(null);
